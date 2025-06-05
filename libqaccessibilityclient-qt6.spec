@@ -1,23 +1,34 @@
+#
+# Conditional build:
+%bcond_with	tests	# test suite
+
+%define		kf_ver	5.91.0
+%define		qt_ver	6.5.0
 %define		kfname	libqaccessibilityclient
 Summary:	Accessibilty tools helper library
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla narzędzi wspomagających dostępność
 Name:		libqaccessibilityclient-qt6
 Version:	0.6.0
 Release:	1
-License:	GPL
+License:	LGPL v2.1+
 Group:		Libraries
 # TODO:
 #Source0:	https://github.com/KDE/libqaccessibilityclient/archive/v%{version}/%{kfname}-%{version}.tar.gz
 Source0:	https://github.com/KDE/libqaccessibilityclient/archive/refs/tags/v%{version}.tar.gz
 # Source0-md5:	12f90db3f6f855ea898fa87a7569a12f
 URL:		https://github.com/KDE/libqaccessibilityclient
-BuildRequires:	Qt6Core-devel
-BuildRequires:	Qt6DBus-devel
-BuildRequires:	Qt6Gui-devel
-BuildRequires:	cmake
+BuildRequires:	Qt6Core-devel >= %{qt_ver}
+BuildRequires:	Qt6DBus-devel >= %{qt_ver}
+BuildRequires:	Qt6Gui-devel >= %{qt_ver}
+%{?with_test:BuildRequires:	Qt6Test-devel >= %{qt_ver}}
+BuildRequires:	Qt6Widgets-devel >= %{qt_ver}
+BuildRequires:	cmake >= 3.16.0
+BuildRequires:	kf6-extra-cmake-modules >= %{kf_ver}
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.736
-BuildRequires:	xorg-lib-libxkbcommon-devel
+Requires:	Qt6Core >= %{qt_ver}
+Requires:	Qt6DBus >= %{qt_ver}
+Requires:	Qt6Gui >= %{qt_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,6 +53,9 @@ Summary:	Header files for libqaccessibilityclient library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libqaccessibilityclient
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	Qt6Core-devel >= %{qt_ver}
+Requires:	Qt6Gui-devel >= %{qt_ver}
+Requires:	Qt6Widgets-devel >= %{qt_ver}
 
 %description devel
 Header files for %{kfname} library.

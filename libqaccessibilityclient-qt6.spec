@@ -9,7 +9,7 @@ Summary:	Accessibilty tools helper library
 Summary(pl.UTF-8):	Biblioteka pomocnicza dla narzędzi wspomagających dostępność
 Name:		libqaccessibilityclient-qt6
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 # TODO:
@@ -54,7 +54,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libqaccessibilityclient
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	Qt6Core-devel >= %{qt_ver}
-Requires:	Qt6Gui-devel >= %{qt_ver}
 Requires:	Qt6Widgets-devel >= %{qt_ver}
 
 %description devel
